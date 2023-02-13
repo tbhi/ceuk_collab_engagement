@@ -14,12 +14,20 @@
       }
     }
     function domainSearch(keywords) {
+      if (!document.getElementById('domain').value) {
+        alert('set domain');
+        return
+      }
       keywords.split(", ").forEach((term) => {
         console.log(term);
         search(`site:${document.getElementById('domain').value} ${term}`)
       });
     }
     function nameSearch(keywords) {
+      if (!document.getElementById('name').value) {
+        alert('set name');
+        return
+      }
       keywords.split(", ").forEach((term) => {
         console.log(term);
         search(`${document.getElementById('name').value} ${term}`)
