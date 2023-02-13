@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    function search(query) {
+      switch (document.querySelector('input[name="engine"]:checked').value) {
+        case 'startpage':
+          window.open(`https://www.startpage.com/sp/search?query=${query}`);
+          break
+        default:
+          window.open(`http://google.com/search?q=${query}`);
+          break;
+      }
+    }
+    function domainSearch(keywords) {
+      keywords.split(", ").forEach((term) => {
+        console.log(term);
+        search(`site:${document.getElementById('domain').value} ${term}`)
+      });
+    }
+    function nameSearch(keywords) {
+      keywords.split(", ").forEach((term) => {
+        console.log(term);
+        search(`${document.getElementById('name').value} ${term}`)
+      });
+    }
+  </script>
+  <style>
+    div {
+      margin: 30px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    div.no-margin {
+      margin: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <label for="name">domain (e.g. wirral.gov.uk)</label>
+    <input type="text" id="domain" name="domain">
+  </div>
+  <div>
+    <label for="name">name (e.g. Wirral Council)</label>
+    <input type="text" id="name" name="name">
+  </div>
+  <div>
+    <div class="no-margin">can trigger google's robot detection so switch to Startpage if needed</div>
+    <input type="radio" name="engine" value="google" checked="checked">
+    <label for="google">Google</label><br>
+    <input type="radio" name="engine" value="startpage">
+    <label for="startpage">Startpage</label><br>
+  </div>
+  <ul>
+    <li>Q1. find council website and look there</li>
+    <li>Q2a
+      <ul>
+        <li><a href="https://councilclimatescorecards.uk/councils">Council Climate Score Cards (Q3.12.1)</a></li>
+        <li><a href="https://data.climateemergency.uk/councils">CAPE</a></li>
+        <li>
+          <button onclick="domainSearch('climate action plan, climate change strategy, net zero action plan')">Search
+            Q2a</button>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button onclick="domainSearch('climate action plan update, annual report')">Search
+        Q2b</button>
+    </li>
+
+    <li>
+      Q5a
+      <ul>
+        <li>
+          <button
+            onclick="nameSearch('climate engagement, community engagement, climate action network, climate resident representation, climate assembly, Climate engagement strategy, public engagement strategy, climate communications strategy')">Search
+            Q5a</button>
+        </li>
+        <li>
+          also search for engagement in the climate action plan
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <button
+        onclick="domainSearch('council climate fund, climate action fund, community fund, environment fund')">Search
+        Q6</button>
+    </li>
+    <li>
+      <button onclick="domainSearch('JSNA, health climate partnership, climate change committee membership')">Search
+        Q7</button>
+    </li>
+    <li>
+      <button
+        onclick="nameSearch('climate arts, climate culture, climate museum, climate sports, climate gallery, decarbonisation arts, decarbonisation culture')">Search
+        Q8</button>
+    </li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://energysparks.uk/schools">Energy Sparks map</a>
+        </li>
+        <li>
+          <button onclick="domainSearch('climate schools, climate youth, climate assembly, solar school')">Search
+            Q9</button>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button
+        onclick="nameSearch('climate business support, net zero decarbonisation business, SME (small and medium enterprises) decarbonisation, grants, carbon literacy training')">Search
+        Q10</button>
+    </li>
+  </ul>
+</body>
+
+</html>
